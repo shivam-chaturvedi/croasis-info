@@ -42,8 +42,8 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Button size="sm" className="ml-2">
-              Partner With Us
+            <Button size="sm" className="ml-2" asChild>
+              <Link to="/contact">Partner With Us</Link>
             </Button>
           </div>
 
@@ -76,8 +76,8 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="px-4 pt-2">
-                <Button className="w-full" onClick={() => setIsOpen(false)}>
-                  Partner With Us
+                <Button className="w-full" asChild>
+                  <Link to="/contact" onClick={() => setIsOpen(false)}>Partner With Us</Link>
                 </Button>
               </div>
             </div>
