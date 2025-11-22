@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import CounterCard from "@/components/CounterCard";
@@ -5,14 +6,26 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowRight, Sprout, Users, Droplets, GraduationCap } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroBanner from "@/assets/hero-banner.jpg";
-import agroecologyIcon from "@/assets/agroecology-icon.jpg";
-import livelihoodIcon from "@/assets/livelihood-icon.jpg";
-import climateIcon from "@/assets/climate-icon.jpg";
-import trainingIcon from "@/assets/training-icon.jpg";
-import communityTeam from "@/assets/community-team.jpg";
+
+const heroVideo = "/images/hero.mp4";
+const agroecologyIcon = "/images/02_image.jpg";
+const livelihoodIcon = "/images/03_image.jpg";
+const climateIcon = "/images/04_image.jpg";
+const trainingIcon = "/images/01_image.jpg";
+const communityTeam = "/images/06_image.jpg";
 
 const Home = () => {
+  const heroRef = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [horizontalImages, setHorizontalImages] = useState<string[]>([]);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+
+  const gallerySources = useMemo(
+    () =>
+      Array.from({ length: 30 }, (_, i) => `/images/${String(i + 1).padStart(2, "0")}_image.jpg`),
+    []
+  );
+
   const focusAreas = [
     {
       icon: Sprout,
@@ -44,19 +57,140 @@ const Home = () => {
     },
   ];
 
+  const phaseTwoModules = [
+    {
+      title: "Carbon Dashboard",
+      description: "Methodology outline and KPI framework for carbon and co-benefits.",
+      link: "/carbon-dashboard",
+    },
+    {
+      title: "Water Rejuvenation Hub",
+      description: "Case previews, flow monitoring placeholders, and catchment templates.",
+      link: "/water-rejuvenation",
+    },
+    {
+      title: "Interactive GIS Map",
+      description: "Static map mock with upcoming pins for projects, springs, and partners.",
+      link: "/gis-map",
+    },
+    {
+      title: "Data & Downloads",
+      description: "Dataset placeholders with licensing, sources, and update cadence.",
+      link: "/data-downloads",
+    },
+    {
+      title: "Volunteer Portal",
+      description: "Registration scaffold with consent and onboarding checklists.",
+      link: "/volunteer-portal",
+    },
+  ];
+
+  useEffect(() => {
+    let isMounted = true;
+    const loadImages = async () => {
+      const results: string[] = [];
+      await Promise.all(
+        gallerySources.map(
+          (src) =>
+            new Promise<void>((resolve) => {
+              const img = new Image();
+              img.onload = () => {
+                if (img.naturalWidth > img.naturalHeight) {
+                  results.push(src);
+                }
+                resolve();
+              };
+              img.onerror = resolve;
+              img.src = src;
+            })
+        )
+      );
+      if (isMounted) {
+        setHorizontalImages(results);
+      }
+    };
+    loadImages();
+    return () => {
+      isMounted = false;
+    };
+  }, [gallerySources]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let rafId = 0;
+    let duration = 0;
+
+    const handleMetadata = () => {
+      duration = video.duration || 0;
+      video.pause();
+    };
+
+    video.muted = true;
+    video.playsInline = true;
+    video.autoplay = false;
+    video.controls = false;
+    video.addEventListener("loadedmetadata", handleMetadata);
+
+    const syncToScroll = () => {
+      const heroEl = heroRef.current;
+      const heroHeight = heroEl?.offsetHeight || 1;
+      const maxScroll = heroHeight * 2;
+      const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+
+      if (duration > 0) {
+        const targetTime = progress * duration;
+        if (Math.abs(video.currentTime - targetTime) > 0.05) {
+          video.currentTime = targetTime;
+        }
+      }
+
+      rafId = window.requestAnimationFrame(syncToScroll);
+    };
+
+    rafId = window.requestAnimationFrame(syncToScroll);
+
+    return () => {
+      video.removeEventListener("loadedmetadata", handleMetadata);
+      window.cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!horizontalImages.length) return;
+    const interval = window.setInterval(() => {
+      setCarouselIndex((prev) => (prev + 1) % horizontalImages.length);
+    }, 2000);
+    return () => window.clearInterval(interval);
+  }, [horizontalImages.length]);
+
+  const goToSlide = (direction: "next" | "prev") => {
+    if (!horizontalImages.length) return;
+    setCarouselIndex((prev) => {
+      if (direction === "next") {
+        return (prev + 1) % horizontalImages.length;
+      }
+      return (prev - 1 + horizontalImages.length) % horizontalImages.length;
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-[600px] md:h-[700px] overflow-hidden">
+      <section ref={heroRef} className="relative h-[600px] md:h-[720px] overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src={heroBanner}
-            alt="Lush green terraced hillsides in Meghalaya"
+          <video
+            ref={videoRef}
             className="w-full h-full object-cover"
+            src={heroVideo}
+            playsInline
+            muted
+            loop
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
         </div>
         
         <div className="relative container mx-auto px-4 h-full flex items-center">
@@ -81,6 +215,57 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Horizontal Image Carousel */}
+      {horizontalImages.length > 0 && (
+        <section className="py-12 bg-muted/60">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <p className="text-sm uppercase font-semibold text-primary tracking-wide">Field moments</p>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Scenes from the Khasi Hills</h2>
+              </div>
+              <div className="flex gap-2">
+                <Button variant="outline" size="icon" className="rounded-full" onClick={() => goToSlide("prev")}>
+                  ‹
+                </Button>
+                <Button variant="outline" size="icon" className="rounded-full" onClick={() => goToSlide("next")}>
+                  ›
+                </Button>
+              </div>
+            </div>
+            <div className="relative overflow-hidden rounded-2xl shadow-medium bg-background">
+              <div
+                className="flex transition-transform duration-700 ease-out w-full"
+                style={{ transform: `translateX(-${carouselIndex * 100}%)` }}
+              >
+                {horizontalImages.map((src, idx) => (
+                  <div key={src} className="min-w-full flex-shrink-0 flex items-center justify-center">
+                    <img
+                      src={src}
+                      alt={`Field photo ${idx + 1}`}
+                      className="max-h-[320px] md:max-h-[420px] max-w-[1100px] w-auto h-auto object-contain"
+                      loading={idx > 2 ? "lazy" : "eager"}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                {horizontalImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    aria-label={`Go to slide ${idx + 1}`}
+                    onClick={() => setCarouselIndex(idx)}
+                    className={`h-2.5 w-2.5 rounded-full transition ${
+                      idx === carouselIndex ? "bg-primary" : "bg-white/60 hover:bg-white"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Impact Counters */}
       <section className="py-16 bg-muted">
@@ -196,6 +381,34 @@ const Home = () => {
             <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-primary" asChild>
               <Link to="/about">Learn About Us</Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Phase 2 Modules */}
+      <section className="py-16 bg-muted">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <span className="text-sm font-semibold text-primary uppercase tracking-wide">Phase 2 · Coming Soon</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-3">Data-Driven Modules</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Scaffolds for dashboards and portals aligned with CRG's blueprint—built for approvals, data intake, and performance targets.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {phaseTwoModules.map((module) => (
+              <Card key={module.title} className="p-6 flex flex-col gap-3">
+                <h3 className="text-xl font-bold text-foreground">{module.title}</h3>
+                <p className="text-muted-foreground flex-1">{module.description}</p>
+                <Link
+                  to={module.link}
+                  className="text-primary font-semibold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all"
+                >
+                  View scaffold
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Card>
+            ))}
           </div>
         </div>
       </section>

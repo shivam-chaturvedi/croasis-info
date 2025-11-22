@@ -2,10 +2,11 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Sprout, Users, Droplets, GraduationCap } from "lucide-react";
-import agroecologyIcon from "@/assets/agroecology-icon.jpg";
-import livelihoodIcon from "@/assets/livelihood-icon.jpg";
-import climateIcon from "@/assets/climate-icon.jpg";
-import trainingIcon from "@/assets/training-icon.jpg";
+
+const agroecologyIcon = "/images/02_image.jpg";
+const livelihoodIcon = "/images/03_image.jpg";
+const climateIcon = "/images/04_image.jpg";
+const trainingIcon = "/images/05_image.jpg";
 
 const FocusAreas = () => {
   const areas = [

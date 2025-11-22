@@ -42,8 +42,38 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/programs" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Programs
+                </Link>
+              </li>
+              <li>
                 <Link to="/impact" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Impact
+                </Link>
+              </li>
+              <li>
+                <Link to="/publications" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Publications
+                </Link>
+              </li>
+              <li>
+                <Link to="/events" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Events
+                </Link>
+              </li>
+              <li>
+                <Link to="/partnerships" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Partnerships
+                </Link>
+              </li>
+              <li>
+                <Link to="/gallery" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Gallery
+                </Link>
+              </li>
+              <li>
+                <Link to="/data-downloads" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Data & Downloads
                 </Link>
               </li>
             </ul>
