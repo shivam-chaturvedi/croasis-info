@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import CounterCard from "@/components/CounterCard";
@@ -6,23 +6,22 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowRight, Sprout, Users, Droplets, GraduationCap } from "lucide-react";
 import { Link } from "react-router-dom";
+import { mediaUrl } from "@/lib/media";
 
-const heroVideo = "/images/hero.mp4";
-const agroecologyIcon = "/images/02_image.jpg";
-const livelihoodIcon = "/images/03_image.jpg";
-const climateIcon = "/images/04_image.jpg";
-const trainingIcon = "/images/01_image.jpg";
-const communityTeam = "/images/06_image.jpg";
+const agroecologyIcon = mediaUrl("02_image.jpg");
+const livelihoodIcon = mediaUrl("03_image.jpg");
+const climateIcon = mediaUrl("04_image-rotated.jpg");
+const trainingIcon = mediaUrl("01_image-rotated.jpg");
+const communityTeam = mediaUrl("06_image.jpg");
+const heroVideoSrc = mediaUrl("hero.mp4");
+const heroPoster = mediaUrl("01_image.jpg");
 
 const Home = () => {
-  const heroRef = useRef<HTMLElement | null>(null);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [horizontalImages, setHorizontalImages] = useState<string[]>([]);
   const [carouselIndex, setCarouselIndex] = useState(0);
-
   const gallerySources = useMemo(
     () =>
-      Array.from({ length: 30 }, (_, i) => `/images/${String(i + 1).padStart(2, "0")}_image.jpg`),
+      Array.from({ length: 30 }, (_, i) => mediaUrl(`${String(i + 1).padStart(2, "0")}_image.jpg`)),
     []
   );
 
@@ -116,48 +115,6 @@ const Home = () => {
   }, [gallerySources]);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    let rafId = 0;
-    let duration = 0;
-
-    const handleMetadata = () => {
-      duration = video.duration || 0;
-      video.pause();
-    };
-
-    video.muted = true;
-    video.playsInline = true;
-    video.autoplay = false;
-    video.controls = false;
-    video.addEventListener("loadedmetadata", handleMetadata);
-
-    const syncToScroll = () => {
-      const heroEl = heroRef.current;
-      const heroHeight = heroEl?.offsetHeight || 1;
-      const maxScroll = heroHeight * 2;
-      const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
-
-      if (duration > 0) {
-        const targetTime = progress * duration;
-        if (Math.abs(video.currentTime - targetTime) > 0.05) {
-          video.currentTime = targetTime;
-        }
-      }
-
-      rafId = window.requestAnimationFrame(syncToScroll);
-    };
-
-    rafId = window.requestAnimationFrame(syncToScroll);
-
-    return () => {
-      video.removeEventListener("loadedmetadata", handleMetadata);
-      window.cancelAnimationFrame(rafId);
-    };
-  }, []);
-
-  useEffect(() => {
     if (!horizontalImages.length) return;
     const interval = window.setInterval(() => {
       setCarouselIndex((prev) => (prev + 1) % horizontalImages.length);
@@ -176,23 +133,24 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-transparent">
       <Navbar />
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative h-[600px] md:h-[720px] overflow-hidden">
-        <div className="absolute inset-0">
+      <section className="relative h-[600px] md:h-[720px] overflow-hidden">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
           <video
-            ref={videoRef}
             className="w-full h-full object-cover"
-            src={heroVideo}
-            playsInline
+            src={heroVideoSrc}
+            poster={heroPoster}
+            autoPlay
             muted
-            loop
+          
+            playsInline
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
         </div>
-        
+        <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/35 to-white/10" />
+
         <div className="relative container mx-auto px-4 h-full flex items-center">
           <div className="max-w-2xl text-white animate-fade-in">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
@@ -234,7 +192,7 @@ const Home = () => {
                 </Button>
               </div>
             </div>
-            <div className="relative overflow-hidden rounded-2xl shadow-medium bg-background">
+            <div className="relative overflow-hidden rounded-2xl shadow-medium bg-white/70 backdrop-blur">
               <div
                 className="flex transition-transform duration-700 ease-out w-full"
                 style={{ transform: `translateX(-${carouselIndex * 100}%)` }}
@@ -268,7 +226,7 @@ const Home = () => {
       )}
 
       {/* Impact Counters */}
-      <section className="py-16 bg-muted">
+      <section className="py-16 bg-white/70 backdrop-blur">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             <CounterCard end={45} label="Communities Impacted" />
@@ -366,19 +324,19 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-hero-gradient">
+      <section className="py-20 bg-white/75 backdrop-blur">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
             Join Us in Building Sustainable Futures
           </h2>
-          <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             Whether you're a funding partner, researcher, or community organization, there are many ways to collaborate with CRG.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" asChild>
               <Link to="/contact">Get in Touch</Link>
             </Button>
-            <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-primary" asChild>
+            <Button size="lg" variant="outline" className="bg-white/60 border-primary/40 text-primary hover:bg-white hover:text-primary" asChild>
               <Link to="/about">Learn About Us</Link>
             </Button>
           </div>
@@ -386,7 +344,7 @@ const Home = () => {
       </section>
 
       {/* Phase 2 Modules */}
-      <section className="py-16 bg-muted">
+      <section className="py-16 bg-white/70 backdrop-blur">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
             <span className="text-sm font-semibold text-primary uppercase tracking-wide">Phase 2 · Coming Soon</span>

@@ -1,27 +1,28 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
+import { mediaUrl } from "@/lib/media";
 
 const images = [
-  { src: "/images/01_image.jpg", caption: "Terraced landscapes in Meghalaya", credit: "CRG field team" },
-  { src: "/images/02_image.jpg", caption: "Agroecology training plot", credit: "CRG field team" },
-  { src: "/images/03_image.jpg", caption: "Women-led livelihood group", credit: "CRG field team" },
-  { src: "/images/04_image.jpg", caption: "Watershed restoration site", credit: "CRG field team" },
-  { src: "/images/05_image.jpg", caption: "Capacity building workshop", credit: "CRG field team" },
-  { src: "/images/06_image.jpg", caption: "Community leadership meeting", credit: "CRG field team" },
-  { src: "/images/07_image.jpg", caption: "Field monitoring", credit: "CRG field team" },
-  { src: "/images/08_image.jpg", caption: "Landscape detail", credit: "CRG field team" },
+  { src: mediaUrl("01_image.jpg"), caption: "Terraced landscapes in Meghalaya", credit: "CRG field team" },
+  { src: mediaUrl("02_image.jpg"), caption: "Agroecology training plot", credit: "CRG field team" },
+  { src: mediaUrl("03_image.jpg"), caption: "Women-led livelihood group", credit: "CRG field team" },
+  { src: mediaUrl("04_image.jpg"), caption: "Watershed restoration site", credit: "CRG field team" },
+  { src: mediaUrl("05_image.jpg"), caption: "Capacity building workshop", credit: "CRG field team" },
+  { src: mediaUrl("06_image.jpg"), caption: "Community leadership meeting", credit: "CRG field team" },
+  { src: mediaUrl("07_image.jpg"), caption: "Field monitoring", credit: "CRG field team" },
+  { src: mediaUrl("08_image.jpg"), caption: "Landscape detail", credit: "CRG field team" },
 ];
 
 const videos = [
-  { src: "/videos/01_video.mp4", caption: "Watershed restoration fieldwork", credit: "CRG field team" },
-  { src: "/videos/02_video.mp4", caption: "Agroecology training session", credit: "CRG field team" },
-  { src: "/videos/03_video.mp4", caption: "Community meeting highlights", credit: "CRG field team" },
-  { src: "/videos/04_video.mp4", caption: "Spring rejuvenation activity", credit: "CRG field team" },
-  { src: "/videos/05_video.mp4", caption: "Livelihood enterprise demo", credit: "CRG field team" },
-  { src: "/videos/06_video.mp4", caption: "Field monitoring clip", credit: "CRG field team" },
-  { src: "/videos/07_video.mp4", caption: "Training recap reel", credit: "CRG field team" },
-  { src: "/videos/08_video.mp4", caption: "Community celebration", credit: "CRG field team" },
+  { src: mediaUrl("01_video.mp4"), caption: "Watershed restoration fieldwork", credit: "CRG field team" },
+  { src: mediaUrl("02_video.mp4"), caption: "Agroecology training session", credit: "CRG field team" },
+  { src: mediaUrl("03_video.mp4"), caption: "Community meeting highlights", credit: "CRG field team" },
+  { src: mediaUrl("04_video.mp4"), caption: "Spring rejuvenation activity", credit: "CRG field team" },
+  { src: mediaUrl("05_video.mp4"), caption: "Livelihood enterprise demo", credit: "CRG field team" },
+  { src: mediaUrl("06_video.mp4"), caption: "Field monitoring clip", credit: "CRG field team" },
+  { src: mediaUrl("07_video.mp4"), caption: "Training recap reel", credit: "CRG field team" },
+  { src: mediaUrl("08_video.mp4"), caption: "Community celebration", credit: "CRG field team" },
 ];
 
 const Gallery = () => {
