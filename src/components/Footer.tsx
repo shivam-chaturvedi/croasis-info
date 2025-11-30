@@ -11,21 +11,18 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <img
-                src={LOGO_URL}
-                alt="CROASIS Research Group logo"
-                className="w-10 h-10 rounded-md object-contain border border-primary/20 bg-white"
-              />
-              <div>
-                <span className="font-bold text-foreground">CROASIS</span>
-                <span className="block text-xs text-muted-foreground">Research Group</span>
-              </div>
+            <img
+              src={LOGO_URL}
+              alt="CROASIS Research Group logo"
+              className="w-20 h-20 md:w-52 md:h-32 rounded-xl object-contain border-2 border-primary/30 bg-white shadow-lg shadow-primary/20"
+            />
+              <span className="sr-only">CROASIS Research Group</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Community-driven research for biodiversity conservation, sustainable livelihoods, and climate resilience in Meghalaya.
             </p>
-            <Button size="sm" asChild>
-              <Link to="/contact">Partner With Us</Link>
+            <Button size="sm" className="bg-secondary text-secondary-foreground hover:bg-secondary/80" asChild>
+              <Link to="/contact#donate">Donate Now</Link>
             </Button>
           </div>
 
@@ -73,7 +70,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                <span>+91 XXX XXX XXXX</span>
+                <span>+91 99715 39559</span>
               </div>
               <div className="flex gap-3 pt-1">
                 <a

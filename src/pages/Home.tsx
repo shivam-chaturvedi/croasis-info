@@ -6,15 +6,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowRight, Sprout, Users, Droplets, GraduationCap } from "lucide-react";
 import { Link } from "react-router-dom";
-import { mediaUrl } from "@/lib/media";
+import { LOGO_URL, mediaUrl } from "@/lib/media";
 
 const agroecologyIcon = mediaUrl("02_image.jpg");
 const livelihoodIcon = mediaUrl("03_image.jpg");
 const climateIcon = mediaUrl("04_image-rotated.jpg");
 const trainingIcon = mediaUrl("01_image-rotated.jpg");
 const communityTeam = mediaUrl("06_image.jpg");
-const heroVideoSrc = mediaUrl("hero.mp4");
-const heroPoster = mediaUrl("01_image.jpg");
+const heroImage = mediaUrl("02_image.jpg");
 
 const Home = () => {
   const [horizontalImages, setHorizontalImages] = useState<string[]>([]);
@@ -118,7 +117,7 @@ const Home = () => {
     if (!horizontalImages.length) return;
     const interval = window.setInterval(() => {
       setCarouselIndex((prev) => (prev + 1) % horizontalImages.length);
-    }, 2000);
+    }, 4500);
     return () => window.clearInterval(interval);
   }, [horizontalImages.length]);
 
@@ -137,37 +136,43 @@ const Home = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-[600px] md:h-[720px] overflow-hidden">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <video
-            className="w-full h-full object-cover"
-            src={heroVideoSrc}
-            poster={heroPoster}
-            autoPlay
-            muted
-          
-            playsInline
-          />
+      <section className="relative h-[640px] md:h-[780px] overflow-hidden">
+          <div className="absolute inset-0 -z-10 overflow-hidden">
+            <img
+              src={heroImage}
+              alt="Community members restoring landscapes together"
+              className="w-full h-full object-cover object-center"
+              loading="eager"
+            />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/25" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.15),transparent_45%)]" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/35 to-white/10" />
 
         <div className="relative container mx-auto px-4 h-full flex items-center">
-          <div className="max-w-2xl text-white animate-fade-in">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Rooted in Community, Growing Sustainability
+          <div className="max-w-3xl text-white animate-fade-in bg-black/40 backdrop-blur-md p-6 md:p-8 rounded-3xl shadow-xl border border-white/15">
+            <div className="flex items-center gap-4 mb-4">
+              <Link to="/" aria-label="Go to Croasis home" className="group">
+                <img
+                  src={LOGO_URL}
+                  alt="CROASIS Research Group logo"
+                  className="w-20 h-20 md:w-52 md:h-32 rounded-xl object-contain shadow-lg border border-white/30 bg-white/80"
+                />
+                <span className="sr-only">CROASIS Research Group</span>
+              </Link>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-[0_10px_25px_rgba(0,0,0,0.55)]">
+              <span className="block text-amber-100">Rooted in Community,</span>
+              <span className="block text-emerald-100">Growing Sustainability</span>
             </h1>
-            <p className="text-lg md:text-xl mb-8 text-white/90">
+            <p className="text-lg md:text-xl mb-8 text-amber-50/90 drop-shadow-[0_6px_14px_rgba(0,0,0,0.6)]">
               CROASIS Research Group works alongside communities in Meghalaya to build resilient ecosystems, sustainable livelihoods, and climate-smart futures.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="group" asChild>
+              <Button size="lg" className="group bg-white text-foreground hover:bg-primary hover:text-primary-foreground" asChild>
                 <Link to="/projects">
                   Explore Our Work
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
-              </Button>
-              <Button size="lg" variant="secondary" asChild>
-                <Link to="/contact">Partner With Us</Link>
               </Button>
             </div>
           </div>
@@ -192,17 +197,17 @@ const Home = () => {
                 </Button>
               </div>
             </div>
-            <div className="relative overflow-hidden rounded-2xl shadow-medium bg-white/70 backdrop-blur">
+            <div className="relative overflow-hidden rounded-2xl shadow-medium bg-white/80 backdrop-blur">
               <div
-                className="flex transition-transform duration-700 ease-out w-full"
+                className="flex transition-transform duration-[1400ms] ease-in-out w-full"
                 style={{ transform: `translateX(-${carouselIndex * 100}%)` }}
               >
                 {horizontalImages.map((src, idx) => (
-                  <div key={src} className="min-w-full flex-shrink-0 flex items-center justify-center">
+                  <div key={src} className="min-w-full flex-shrink-0 h-[320px] md:h-[440px]">
                     <img
                       src={src}
                       alt={`Field photo ${idx + 1}`}
-                      className="max-h-[320px] md:max-h-[420px] max-w-[1100px] w-auto h-auto object-contain"
+                      className="w-full h-full object-cover"
                       loading={idx > 2 ? "lazy" : "eager"}
                     />
                   </div>
@@ -319,26 +324,6 @@ const Home = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-white/75 backdrop-blur">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Join Us in Building Sustainable Futures
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Whether you're a funding partner, researcher, or community organization, there are many ways to collaborate with CRG.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" asChild>
-              <Link to="/contact">Get in Touch</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="bg-white/60 border-primary/40 text-primary hover:bg-white hover:text-primary" asChild>
-              <Link to="/about">Learn About Us</Link>
-            </Button>
           </div>
         </div>
       </section>

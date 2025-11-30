@@ -62,7 +62,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-20">
+      <section className="py-20" id="donate">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
             {/* Contact Information */}
@@ -100,7 +100,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Phone</h3>
                     <p className="text-sm text-muted-foreground">
-                      +91 XXX XXX XXXX
+                      +91 99715 39559
                     </p>
                   </div>
                 </div>

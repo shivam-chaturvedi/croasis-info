@@ -51,7 +51,7 @@ const CounterCard = ({ end, label, suffix = "+", duration = 2000 }: CounterCardP
 
   return (
     <div ref={counterRef} className="text-center">
-      <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
+      <div className="text-4xl md:text-5xl font-bold text-primary mb-2 impact-glow">
         {count.toLocaleString()}
         {suffix}
       </div>

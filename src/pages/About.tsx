@@ -140,7 +140,7 @@ const About = () => {
                     India - 793XXX<br />
                     <br />
                     Email: info@croasis.org<br />
-                    Phone: +91 XXX XXX XXXX
+                    Phone: +91 99715 39559
                   </p>
                 </div>
                 <div>

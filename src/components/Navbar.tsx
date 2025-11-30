@@ -53,13 +53,11 @@ const Navbar = () => {
     {
       name: "Contact",
       path: "/contact",
-      children: [{ name: "Partner With Us", path: "/contact" }],
+      children: [{ name: "Donate Now", path: "/contact#donate" }],
     },
     {
       name: "More",
       children: [
-        { name: "Programs", path: "/programs" },
-        { name: "Publications", path: "/publications" },
         { name: "Data & Downloads", path: "/data-downloads" },
         { name: "Volunteer Portal", path: "/volunteer-portal" },
       ],
@@ -69,18 +67,15 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20 md:h-32">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-3 group" aria-label="Go to Croasis home">
             <img
               src={LOGO_URL}
               alt="CROASIS Research Group logo"
-              className="w-10 h-10 object-contain rounded-md border border-primary/20 bg-white group-hover:scale-110 transition-transform"
+              className="w-20 h-20 md:w-52 md:h-32 object-contain rounded-xl border-2 border-primary/30 bg-white shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform"
             />
-            <div>
-              <span className="font-bold text-lg text-foreground">CROASIS</span>
-              <span className="block text-xs text-muted-foreground">Research Group</span>
-            </div>
+            <span className="sr-only">CROASIS Research Group</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -121,8 +116,12 @@ const Navbar = () => {
                 </div>
               );
             })}
-            <Button size="sm" className="ml-2" asChild>
-              <Link to="/contact">Partner With Us</Link>
+            <Button
+              size="sm"
+              className="ml-2 bg-secondary text-secondary-foreground shadow-md shadow-secondary/40 hover:bg-secondary/85"
+              asChild
+            >
+              <Link to="/contact#donate">Donate Now</Link>
             </Button>
           </div>
 
@@ -189,8 +188,11 @@ const Navbar = () => {
                 );
               })}
               <div className="px-4 pt-2">
-                <Button className="w-full" asChild>
-                  <Link to="/contact" onClick={() => setIsOpen(false)}>Partner With Us</Link>
+                <Button
+                  className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  asChild
+                >
+                  <Link to="/contact#donate" onClick={() => setIsOpen(false)}>Donate Now</Link>
                 </Button>
               </div>
             </div>
