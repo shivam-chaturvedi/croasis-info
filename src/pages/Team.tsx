@@ -5,19 +5,19 @@ const teamMembers = [
   {
     name: "Amit Talukdar",
     title: "Founder",
-    image: "/Amit%20Talukdar.png",
+    image: "https://crg.org.in/wp-content/uploads/2025/12/Amit-Talukdar.png",
     bio: "Engineering graduate and entrepreneur with ventures across manufacturing, education, and rural development. Experienced in product design, strategy, and creating community-focused enterprises.",
   },
   {
     name: "Pyntngenlang Khongsit",
     title: "Co-Founder",
-    image: "/Pyntngenlang%20Khongsit.png",
+    image: "https://crg.org.in/wp-content/uploads/2025/12/Pyntngenlang-Khongsit.png",
     bio: "Postgraduate in Environmental Science with field experience in food processing, hydroponics, and environmental studies. Brings practical knowledge in community health, technical training, and documentation.",
   },
   {
     name: "Kerlang Khonglam",
     title: "Lead - Environmental Research",
-    image: "/Kerlang%20Khonglam.png",
+    image: "https://crg.org.in/wp-content/uploads/2025/12/Kerlang-Khonglam.png",
     bio: "Environmental scientist skilled in plant macropropagation, field research, and conservation projects. Former Junior Research Fellow focused on threatened species and capacity building in the Himalayas.",
   },
 ];

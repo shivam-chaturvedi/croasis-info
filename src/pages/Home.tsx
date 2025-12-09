@@ -116,19 +116,19 @@ const Home = () => {
     {
       name: "Amit Talukdar",
       title: "Founder",
-      image: "/Amit%20Talukdar.png",
+      image: "https://crg.org.in/wp-content/uploads/2025/12/Amit-Talukdar.png",
       bio: "Engineering graduate and entrepreneur with ventures spanning manufacturing, education, and rural development. Focused on product design, strategy, and sustainable community enterprises.",
     },
-    {
-      name: "Pyntngenlang Khongsit",
-      title: "Co-Founder",
-      image: "/Pyntngenlang%20Khongsit.png",
+  {
+    name: "Pyntngenlang Khongsit",
+    title: "Co-Founder",
+    image: "https://crg.org.in/wp-content/uploads/2025/12/Pyntngenlang-Khongsit.png",
       bio: "Postgraduate in Environmental Science experienced in food processing, hydroponics, and environmental studies. Brings domain knowledge in community health, technical training, and research documentation.",
     },
-    {
-      name: "Kerlang Khonglam",
-      title: "Lead - Environmental Research",
-      image: "/Kerlang%20Khonglam.png",
+  {
+    name: "Kerlang Khonglam",
+    title: "Lead - Environmental Research",
+    image: "https://crg.org.in/wp-content/uploads/2025/12/Kerlang-Khonglam.png",
       bio: "Environmental scientist with expertise in plant macropropagation, field research, and conservation. Former Junior Research Fellow focused on threatened species and capacity-building projects in the Himalayas.",
     },
   ];
