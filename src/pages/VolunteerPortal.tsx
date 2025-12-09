@@ -11,7 +11,6 @@ const VolunteerPortal = () => {
 
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-4 text-center max-w-3xl">
-          <p className="text-sm font-semibold tracking-wide text-primary uppercase">Phase 2 · Coming Soon</p>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mt-3 mb-4">
             Volunteer Portal
           </h1>

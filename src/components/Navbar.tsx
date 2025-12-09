@@ -67,19 +67,19 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20 md:h-32">
+        <div className="flex items-center justify-between h-16 md:h-24">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group" aria-label="Go to Croasis home">
             <img
               src={LOGO_URL}
               alt="CROASIS Research Group logo"
-              className="w-20 h-20 md:w-52 md:h-32 object-contain rounded-xl border-2 border-primary/30 bg-white shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform"
+              className="w-[150px] h-[150px] md:w-[210px] md:h-[210px] object-contain transition-transform group-hover:scale-105"
             />
             <span className="sr-only">CROASIS Research Group</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-5">
             {navLinks.map((link) => {
               const hasChildren = !!link.children?.length;
               return (
@@ -91,7 +91,7 @@ const Navbar = () => {
                 >
                   <Link
                     to={link.path || (link.children?.[0]?.path ?? "#")}
-                    className="text-sm font-medium text-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
+                    className="text-base font-semibold tracking-wide text-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
                   >
                     {link.name}
                     {hasChildren && <ChevronDown className="w-4 h-4 text-muted-foreground group-hover:text-primary" />}
@@ -117,8 +117,8 @@ const Navbar = () => {
               );
             })}
             <Button
-              size="sm"
-              className="ml-2 bg-secondary text-secondary-foreground shadow-md shadow-secondary/40 hover:bg-secondary/85"
+              size="lg"
+              className="ml-4 rounded-full px-5 py-3 bg-secondary text-secondary-foreground shadow-lg shadow-secondary/40 hover:bg-secondary/85"
               asChild
             >
               <Link to="/contact#donate">Donate Now</Link>
@@ -127,7 +127,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-3"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -148,7 +148,7 @@ const Navbar = () => {
                 const isChildOpen = openMobileMenu === link.name;
                 return (
                   <div key={link.name} className="flex flex-col">
-                    <div className="flex items-center justify-between px-4 py-2 text-sm font-medium text-foreground hover:bg-muted rounded-lg transition-colors">
+                    <div className="flex items-center justify-between px-4 py-3 text-base font-semibold text-foreground hover:bg-muted rounded-lg transition-colors">
                       <Link
                         to={link.path || (link.children?.[0]?.path ?? "#")}
                         onClick={() => setIsOpen(false)}
@@ -173,7 +173,7 @@ const Navbar = () => {
                           <Link
                             key={child.path}
                             to={child.path}
-                            className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+                            className="px-4 py-2 text-base text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
                             onClick={() => {
                               setIsOpen(false);
                               setOpenMobileMenu(null);
@@ -189,7 +189,8 @@ const Navbar = () => {
               })}
               <div className="px-4 pt-2">
                 <Button
-                  className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  className="w-full rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/80 py-3"
+                  size="lg"
                   asChild
                 >
                   <Link to="/contact#donate" onClick={() => setIsOpen(false)}>Donate Now</Link>

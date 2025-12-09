@@ -11,11 +11,11 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-            <img
-              src={LOGO_URL}
-              alt="CROASIS Research Group logo"
-              className="w-20 h-20 md:w-52 md:h-32 rounded-xl object-contain border-2 border-primary/30 bg-white shadow-lg shadow-primary/20"
-            />
+              <img
+                src={LOGO_URL}
+                alt="CROASIS Research Group logo"
+                className="w-[160px] h-[160px] md:w-[230px] md:h-[230px] object-contain"
+              />
               <span className="sr-only">CROASIS Research Group</span>
             </div>
             <p className="text-sm text-muted-foreground">
