@@ -184,7 +184,7 @@ const Home = () => {
   }, [shouldAnimateImpact]);
 
   return (
-    <div className="min-h-screen bg-transparent">
+    <div className="min-h-screen bg-white">
       <Navbar />
 
       {/* Hero slider */}
@@ -214,7 +214,9 @@ const Home = () => {
             </div>
           </div>
           <div className="max-w-3xl text-white space-y-6">
-            <p className="text-sm uppercase tracking-[0.3em] text-white/60">Community Vocational Training</p>
+            <p className="text-base uppercase tracking-[0.3em] font-semibold text-white">
+              Community Vocational Training
+            </p>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight text-amber-200 max-w-full">
               Vocational Training
             </h1>
@@ -264,7 +266,7 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
             <div className="space-y-6">
-              <p className="text-sm uppercase tracking-[0.4em] text-muted-foreground">About Us</p>
+              <p className="text-base uppercase tracking-[0.5em] font-bold text-foreground">About Us</p>
               <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
                 Research, action, and stewardship in Meghalaya.
               </h2>
@@ -323,8 +325,8 @@ const Home = () => {
       </section>
 
       {/* Focus Area */}
-      <section className="py-16 bg-[url('https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-right-top">
-        <div className="bg-white/90">
+      <section className="bg-[url('https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-right-top">
+        <div className="bg-white/90 py-16">
           <div className="container mx-auto px-4 py-12">
             <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-center">
               <div className="rounded-[40px] overflow-hidden shadow-2xl bg-white">
@@ -375,7 +377,7 @@ const Home = () => {
       </section>
 
       {/* Featured Stories */}
-      <section className="py-16 bg-background">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-[1.05fr_1fr] gap-12 items-start">
             <div className="space-y-6">
@@ -415,12 +417,14 @@ const Home = () => {
               Meet the founders and researchers driving CROASIS—each card below also acts as a template for adding collaborators in future sprints.
             </p>
           </div>
-          <div className="grid gap-8 md:grid-cols-3">
-            {teamMembers.map((member) => (
-              <div key={member.name} className="rounded-[32px] bg-white border border-border shadow-lg overflow-hidden flex flex-col">
-                <div className="h-52 bg-[#f8f8f8] flex items-center justify-center">
-                  <img src={member.image} alt={member.name} className="max-h-full w-full object-contain" />
-                </div>
+            <div className="grid gap-8 md:grid-cols-3">
+              {teamMembers.map((member) => (
+                <div key={member.name} className="rounded-[32px] bg-white border border-border shadow-lg overflow-hidden flex flex-col items-stretch">
+                  <div className="pt-6 flex justify-center">
+                    <div className="h-48 w-48 rounded-full overflow-hidden border border-border bg-[#f8f8f8]">
+                      <img src={member.image} alt={member.name} className="h-full w-full object-contain" />
+                    </div>
+                  </div>
                 <div className="p-6 flex-1 flex flex-col">
                   <h3 className="text-xl font-semibold text-foreground">{member.name}</h3>
                   <p className="text-sm uppercase tracking-[0.4em] text-muted-foreground mb-3">{member.title}</p>
@@ -429,6 +433,9 @@ const Home = () => {
               </div>
             ))}
           </div>
+          <p className="text-sm text-muted-foreground max-w-3xl mx-auto text-center mt-8">
+            Currently using available headshots; please share higher-quality circular portraits if you have them on hand.
+          </p>
         </div>
       </section>
 

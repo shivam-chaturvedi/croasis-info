@@ -135,7 +135,7 @@ const Projects = () => {
                       </ul>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground mb-3">Impact & Results</h3>
+                      <h3 className="text-xl font-bold text-foreground mb-3 whitespace-nowrap">Impact & Results</h3>
                       <ul className="space-y-2">
                         {project.impact.map((item, i) => (
                           <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
