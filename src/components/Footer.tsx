@@ -21,6 +21,9 @@ const Footer = () => {
             <p className="text-sm text-muted-foreground">
               Community-driven research for biodiversity conservation, sustainable livelihoods, and climate resilience in Meghalaya.
             </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-foreground">
+              Croasis Research Group | Registration No.: ML/2024/0468268 | 80G Certified: Donations eligible for tax benefits
+            </p>
             <Button size="sm" className="bg-secondary text-secondary-foreground hover:bg-secondary/80" asChild>
               <Link to="/contact#donate">Donate Now</Link>
             </Button>

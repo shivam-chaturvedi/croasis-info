@@ -76,7 +76,7 @@ const Contact = () => {
                     <h3 className="font-semibold text-foreground mb-1">Office Address</h3>
                     <p className="text-sm text-muted-foreground">
                       Shillong, Meghalaya<br />
-                      India - 793XXX
+                      +91 99715 39559
                     </p>
                   </div>
                 </div>
