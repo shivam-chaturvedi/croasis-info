@@ -225,27 +225,6 @@ const phaseTwoModules = [
   },
 ];
 
-const teamMembers = [
-  {
-    name: "Amit Talukdar",
-    title: "Founder",
-    image: "https://crg.org.in/wp-content/uploads/2025/12/Amit-Talukdar.png",
-    bio: "Engineering graduate and entrepreneur with ventures spanning manufacturing, education, and rural development. Focused on product design, strategy, and sustainable community enterprises.",
-  },
-  {
-    name: "Pyntngenlang Khongsit",
-    title: "Co-Founder",
-    image: "https://crg.org.in/wp-content/uploads/2025/12/Pyntngenlang-Khongsit.png",
-    bio: "Postgraduate in Environmental Science experienced in food processing, hydroponics, and environmental studies. Brings domain knowledge in community health, technical training, and research documentation.",
-  },
-  {
-    name: "Kerlang Khonglam",
-    title: "Lead - Environmental Research",
-    image: "https://crg.org.in/wp-content/uploads/2025/12/Kerlang-Khonglam.png",
-    bio: "Environmental scientist with expertise in plant macropropagation, field research, and conservation. Former Junior Research Fellow focused on threatened species and capacity-building projects in the Himalayas.",
-  },
-];
-
 const Home = () => {
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
 
@@ -549,9 +528,9 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
             <p className="text-sm uppercase tracking-[0.5em] text-muted-foreground">Sub Pages</p>
-            <h2 className="text-3xl md:text-4xl font-semibold text-foreground">Inside the main headings.</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold text-foreground">Inside Main Headings</h2>
             <p className="text-sm text-muted-foreground mt-3">
-              Each main heading unlocks subpages that tell the full story of our programs, resources, and how to connect.
+              Explore every section and the sub pages that keep the narrative complete.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -560,12 +539,12 @@ const Home = () => {
                 key={group.heading}
                 className="p-6 rounded-[30px] border border-border shadow-[0_18px_30px_rgba(15,23,42,0.1)] bg-white"
               >
-                <h3 className="text-lg font-semibold text-foreground">{group.heading}</h3>
-                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                <h3 className="text-lg font-semibold text-foreground">{group.heading}:</h3>
+                <div className="mt-4 space-y-2 text-sm text-muted-foreground">
                   {group.pages.map((page) => (
-                    <li key={page}>• {page}</li>
+                    <p key={page}>{page}</p>
                   ))}
-                </ul>
+                </div>
               </Card>
             ))}
           </div>
@@ -612,36 +591,6 @@ const Home = () => {
               </div>
             </Card>
           </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-semibold text-foreground">Our Team</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Meet the founders and researchers co-creating regenerative futures with the communities of Meghalaya.
-            </p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-3">
-            {teamMembers.map((member) => (
-              <div key={member.name} className="rounded-[32px] bg-white border border-border shadow-lg overflow-hidden flex flex-col">
-                <div className="pt-6 flex justify-center">
-                  <div className="h-48 w-48 rounded-full overflow-hidden border border-border bg-[#f8f8f8]">
-                    <img src={member.image} alt={member.name} className="h-full w-full object-contain" />
-                  </div>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl font-semibold text-foreground">{member.name}</h3>
-                  <p className="text-sm uppercase tracking-[0.4em] text-muted-foreground mb-3">{member.title}</p>
-                  <p className="text-sm text-muted-foreground flex-1">{member.bio}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="text-sm text-muted-foreground max-w-3xl mx-auto text-center mt-8">
-            Currently using available headshots; please share higher-quality circular portraits if you have them on hand.
-          </p>
         </div>
       </section>
 

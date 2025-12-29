@@ -26,34 +26,47 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     {
-      name: "About",
+      name: "About Us",
       path: "/about",
       children: [
-        { name: "Team", path: "/team" },
-        { name: "Partnerships", path: "/partnerships" },
+        { name: "Our Story", path: "/about/our-story" },
+        { name: "Media & Publications", path: "/about/media-publications" },
+        { name: "Our Team", path: "/about/team" },
+        { name: "Financials", path: "/about/financials" },
       ],
     },
     {
       name: "Programs",
       path: "/programs",
       children: [
-        { name: "Focus Areas", path: "/focus-areas" },
-        { name: "Projects", path: "/projects" },
-        { name: "Events", path: "/events" },
+        { name: "Education", path: "/programs/education" },
+        { name: "Agroecology", path: "/programs/agroecology" },
+        { name: "Livelihood Models", path: "/programs/livelihood-models" },
+        { name: "Climate & Environment", path: "/programs/climate-environment" },
+        { name: "Training & Skill Development", path: "/programs/training-skill-development" },
       ],
     },
     {
-      name: "Impact",
-      path: "/impact",
+      name: "Resources",
+      path: "/resources",
       children: [
-        { name: "Publications", path: "/publications" },
-        { name: "Gallery", path: "/gallery" },
+        { name: "Blogs", path: "/resources/blogs" },
+        { name: "Campaigns", path: "/resources/campaigns" },
+        { name: "Publications & Reports", path: "/resources/publications-reports" },
+        { name: "Policies", path: "/resources/policies" },
       ],
     },
     {
       name: "Contact",
       path: "/contact",
-      children: [{ name: "Donate Now", path: "/contact#donate" }],
+      children: [
+        { name: "Address", path: "/contact#address" },
+        { name: "Email Id", path: "mailto:info@croasis.org" },
+        { name: "Phone Number", path: "tel:+919971539559" },
+        { name: "Map Location", path: "/contact#map" },
+        { name: "Send Us a Message", path: "/contact" },
+        { name: "Donate Now", path: "/contact#donate" },
+      ],
     },
     {
       name: "More",
